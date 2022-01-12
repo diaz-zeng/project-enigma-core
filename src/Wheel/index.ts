@@ -11,13 +11,13 @@
  */
 class Wheel {
 
-  private codes!: number[]
+  private codes!: number[];
 
   private notFindError = new Error('输入错误，没有指定的映射');
 
   private reflexSettingError = new Error('转轮设定错误，转轮映射应当为由数字0～25组成的长度为26且元素不重复的数组');
 
-  private currentPosition = 1;
+  private currentPosition = 0;
 
   constructor(codes: number[], initPosition = 0) {
     this.setWheelPosition(initPosition);
@@ -35,7 +35,7 @@ class Wheel {
         this.codes = codes;
       }
     } else {
-      throw this.reflexSettingError
+      throw this.reflexSettingError;
     }
   }
 
@@ -43,31 +43,33 @@ class Wheel {
     return this.currentPosition;
   }
 
-  public setWheelPosition(value?: number): Wheel {
-    if (value) {
-      this.currentPosition = value > 25 ? value % 25 : value;
+  public setWheelPosition(value = -1): Wheel {
+    if (value !== -1) {
+      this.currentPosition = + value % 26;
     } else {
-      this.currentPosition = this.currentPosition < 25 ? this.currentPosition + 1 : 0;
+      this.currentPosition = (this.currentPosition + 1) % 26;
     }
-    return this
+    return this;
   }
 
   public toLeft(input: number): number {
-    let result = 0;
-    const flg = this.codes.some((i, index) => {
+    const target = (input + this.position) % 26;
+    let result = -1;
+    const flg = this.codes.some((code, index) => {
       result = index;
-      return i === input;
+      return code === target;
     });
-    if (flg) {
+    if (flg && result !== -1) {
       return result;
     }
     throw this.notFindError;
+
   }
 
   public toRight(input: number): number {
-    const result = this.codes[input];
-    if (result) {
-      return result;
+    const value = this.codes[input] ?? -1;
+    if (value !== -1) {
+      return (value - this.position + 26) % 26;
     }
     throw this.notFindError;
   }

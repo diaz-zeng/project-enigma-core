@@ -1,9 +1,9 @@
-import Reflector from "@/Reflector"
+import Reflector from "@/Reflector";
 
 /*
  * @Date: 2022-01-11 16:43:47
  * @LastEditors: 曾令宇
- * @FilePath: /project-enigma-core/test/Wheel/Reflector/index.spec.ts
+ * @FilePath: /project-enigma-core/test/Reflector/index.spec.ts
  */
 
 const testData = [{
@@ -45,14 +45,14 @@ const testData = [{
 }, {
     "value1": 25,
     "value2": 0
-}]
+    }];
 test('Reflection test', () => {
-    const reflector = new Reflector(testData)
-    expect(reflector.getValue(5)).not.toBe(5)
-})
+    const reflector = new Reflector(testData);
+    expect(reflector.getValue(5)).not.toBe(5);
+});
 
 test('Consistency test', () => {
-    const reflector = new Reflector(testData)
-    const target = reflector.getValue(5)
-    expect(reflector.getValue(target)).toBe(5)
-})
+    const reflector = new Reflector(testData);
+    const target = reflector.getValue(5);
+    expect(reflector.getValue(target)).toBe(5);
+});

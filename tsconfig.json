@@ -15,6 +15,7 @@
     "baseUrl": ".",
     "outDir": "./dist",
     "declaration": true,
+    "resolveJsonModule": true,
     "types": [
       "jest",
       "webpack-env"
