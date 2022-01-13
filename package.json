@@ -1,7 +1,7 @@
 {
   "name": "project-enigma-core",
   "version": "1.0.0",
-  "main": "lib/project-enigma-core.cjs.min.js",
+  "main": "lib/project-enigma-core.umd.min.js",
   "typings": "typings/index.d.ts",
   "module": "lib/project-enigma-core.esm.min.js",
   "author": "Diaz",
