@@ -7,3 +7,4 @@ export * from './Wheel';
 export * from './Reflector';
 export * from './Enigma';
 export * from './EventHandler';
+export { default as SettingObject } from './defaultSettings.json';
