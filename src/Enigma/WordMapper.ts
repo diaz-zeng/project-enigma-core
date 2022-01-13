@@ -3,7 +3,7 @@
  * @LastEditors: 曾令宇
  * @FilePath: /project-enigma-core/src/Enigma/WordMapper.ts
  */
-import { wordMaps } from '@/defaultSettings.json';
+import { wordMaps } from '../defaultSettings.json';
 export default class WordMapper {
     private wordMap: Map<string, string> = new Map();
     private error = new Error('字符映射设置错误,每个字符只能被映射一次');

@@ -4,5 +4,4 @@
  * @FilePath: /project-enigma-core/src/Enigma/index.ts
  */
 export * from './Enigma';
-export { EventFn, EventType } from '@/EventHandler';
 export { default as WordMapper } from './WordMapper';

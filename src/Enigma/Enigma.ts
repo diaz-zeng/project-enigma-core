@@ -4,10 +4,10 @@
  * @FilePath: /project-enigma-core/src/Enigma/Enigma.ts
  */
 
-import { Wheel } from "@/Wheel";
-import { Reflector } from "@/Reflector";
-import * as Setting from '@/defaultSettings.json';
-import { createEventHandler } from '@/EventHandler';
+import { Wheel } from "../Wheel";
+import { Reflector } from "../Reflector";
+import * as Setting from '../defaultSettings.json';
+import { createEventHandler } from '../EventHandler';
 import WordMapper from "./WordMapper";
 
 export type wheelDirection = 'left' | 'right'
