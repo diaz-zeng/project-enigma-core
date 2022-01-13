@@ -1,10 +1,10 @@
-import { Enigma } from "@/Enigma";
-
 /*
  * @Date: 2022-01-12 16:05:14
  * @LastEditors: 曾令宇
  * @FilePath: /project-enigma-core/test/Enigma/index.spec.ts
  */
+import { Enigma } from "../../src";
+
 test('inputTest instance', () => {
     const instance = new Enigma();
     instance.setWheelsPosition([0, 25, 20]);

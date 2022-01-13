@@ -1,4 +1,4 @@
-import { Reflector } from "@/Reflector";
+import { Reflector } from "../../src";
 
 /*
  * @Date: 2022-01-11 16:43:47
