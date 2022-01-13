@@ -4,7 +4,7 @@
  * @FilePath: /project-enigma-core/src/Enigma/WordMapper.ts
  */
 import { wordMaps } from '@/defaultSettings.json';
-export class WordMapper {
+export default class WordMapper {
     private wordMap: Map<string, string> = new Map();
     private error = new Error('字符映射设置错误,每个字符只能被映射一次');
     constructor(map: typeof wordMaps) {
@@ -13,9 +13,9 @@ export class WordMapper {
 
     public setWordMaps(map: typeof wordMaps) {
         const testMap: Record<string, number> = {};
+        const reg = /^[A-Z]$/;
         map.forEach((e: { value1: string, value2: string }) => {
-            const reg = /^[a-z]$/;
-            const value1 = e.value1.toLowerCase(), value2 = e.value2.toLowerCase();
+            const value1 = e.value1.toUpperCase(), value2 = e.value2.toUpperCase();
             if (!reg.test(value1) || !reg.test(value2)) {
                 throw this.error;
             }

@@ -3,7 +3,7 @@
  * @LastEditors: 曾令宇
  * @FilePath: /project-enigma-core/src/Enigma/EventHandler.ts
  */
-export type EventType = 'input' | 'wheelPositionChange' | 'wheelSettingChange' | 'reflectorSettingChange' | 'inputMapperChange'
+export type EventType = 'input' | 'wheelPositionChange' | 'wheelSettingChange' | 'reflectorSettingChange' | 'inputMapperChange' | 'wordMapsChange'
 
 export type EventFn = ((value?: unknown) => void)
 

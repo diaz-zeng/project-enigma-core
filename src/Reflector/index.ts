@@ -5,10 +5,10 @@
  * @description:反射器组件
  */
 
-type ReflexMapSetting = { value1: number, value2: number }[]
+export type ReflexMapSetting = { value1: number, value2: number }[]
 
-type ReflexMap = { [input: number]: number }
-class Reflector {
+export type ReflexMap = { [input: number]: number }
+export class Reflector {
 
   private reflexMap!: ReflexMap;
 
@@ -36,11 +36,9 @@ class Reflector {
   }
 
   public getValue(input: number): number {
-    const result = this.reflexMap[input];
-    if (result) {
+    const result = this.reflexMap[input] ?? -1;
+    if (result !== -1) {
       return result;
     } throw this.notFindError;
   }
 }
-
-export default Reflector;

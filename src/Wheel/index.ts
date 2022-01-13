@@ -1,15 +1,10 @@
 /*
- * @Date: 2022-01-11 11:47:13
- * @LastEditors: 曾令宇
- * @FilePath: /project-enigma-core/src/Wheel/index.ts
- */
-/*
  * @Date: 2022-01-06 11:09:28
  * @LastEditors: 曾令宇
  * @FilePath: /project-enigma-core/src/Wheel/index.ts
  * @description: 转轮组件
  */
-class Wheel {
+export class Wheel {
 
   private codes!: number[];
 
@@ -48,8 +43,7 @@ class Wheel {
       this.currentPosition = + value % 26;
     } else {
       this.currentPosition = (this.currentPosition + 1) % 26;
-    }
-    return this;
+    } return this;
   }
 
   public toLeft(input: number): number {
@@ -74,4 +68,3 @@ class Wheel {
     throw this.notFindError;
   }
 }
-export default Wheel;

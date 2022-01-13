@@ -3,6 +3,6 @@
  * @LastEditors: 曾令宇
  * @FilePath: /project-enigma-core/src/index.ts
  */
-export { default as Wheel } from './Wheel';
-export { default as Reflector } from './Reflector';
-export { default as Enigma } from './Enigma';
+export * from '@/Wheel';
+export * from '@/Reflector';
+export * from '@/Enigma';

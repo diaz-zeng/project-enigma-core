@@ -3,7 +3,7 @@
  * @LastEditors: 曾令宇
  * @FilePath: /project-enigma-core/test/Wheel/index.spec.ts
  */
-import Wheel from '@/Wheel';
+import { Wheel } from '@/Wheel';
 
 const testData = [0, 1, 2, 3, 20, 21, 4, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 22, 23, 24, 25, 5, 6, 7, 8];
 
