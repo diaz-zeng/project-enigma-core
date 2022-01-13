@@ -1,7 +1,7 @@
 /*
  * @Date: 2022-01-10 16:58:24
  * @LastEditors: 曾令宇
- * @LastEditTime: 2022-01-13 21:42:39
+ * @LastEditTime: 2022-01-13 22:15:29
  * @FilePath: /project-enigma-core/rollup.config.js
  */
 import { nodeResolve } from '@rollup/plugin-node-resolve';
@@ -19,7 +19,7 @@ export default {
     babel({
       exclude: [
         'node_modules/**',
-        // '**/*.spec.ts'
+        '**/*.spec.ts',
       ], // 只编译我们的源代码
       extensions: ['ts', 'js'],
     }),
