@@ -17,7 +17,7 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - run: git config --global user.email ${{secrets.E_MAIL}}
       - run: git config --global user.name "Diaz"
-      - run: git remote set-url origin https://diaz-zeng:${{ secrets.GITHUB_TOKEN }}@${git@github.com:diaz-zeng/project-enigma-core.git}
+      - run: git remote set-url origin https://diaz-zeng:${{ secrets.GITHUB_TOKEN }}@git@github.com:diaz-zeng/project-enigma-core.git
       - run: yarn version --patch
       - run: git push --tags
       - run: yarn publish
