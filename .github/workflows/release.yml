@@ -19,6 +19,7 @@ jobs:
       - run: git config --global user.name "Diaz"
       - run: git remote set-url origin https://diaz-zeng:${{ secrets.GITHUB_TOKEN }}@github.com/diaz-zeng/project-enigma-core.git
       - run: yarn version --patch
+      - run: git push
       - run: git push --tags
       - run: yarn publish
         env:
