@@ -16,6 +16,8 @@ jobs:
         with:
           node-version: 16
           registry-url: https://registry.npmjs.org/
+      - run: git config --global user.email ${{secrets.E_MAIL}}
+      - run: git config --global user.name "Diaz"
       - run: yarn version --prerelease
       - run: git push
       - run: yarn publish
