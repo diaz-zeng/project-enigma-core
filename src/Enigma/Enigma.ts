@@ -119,11 +119,8 @@ export class Enigma {
                 const beforeOutput = this.inputMapper[afterWheel];
                 const outputChar = this.wordMapper.getValue(beforeOutput);
                 result.push(outputChar);
-            }
-            else if (w === ' ') {
-                result.push(' ');
             } else {
-                throw new Error('非法输入');
+                result.push(w);
             }
         });
 

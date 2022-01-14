@@ -8,7 +8,7 @@ import { Enigma } from "../../src";
 test('inputTest instance', () => {
     const instance = new Enigma();
     instance.setWheelsPosition([0, 25, 20]);
-    const encode = instance.input('HEllO WORlD');
+    const encode = instance.input('HEllO WORlD!!!');
     instance.setWheelsPosition([0, 25, 20]);
-    expect(instance.input(encode)).toBe('HELLO WORLD');
+    expect(instance.input(encode)).toBe('HELLO WORLD!!!');
 });
