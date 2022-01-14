@@ -1,8 +1,8 @@
-import { wordMaps } from '../defaultSettings.json';
+import { WordMap } from '../Settings';
 export default class WordMapper {
     private wordMap;
     private error;
-    constructor(map: typeof wordMaps);
-    setWordMaps(map: typeof wordMaps): void;
+    constructor(map?: WordMap[]);
+    setWordMaps(map?: WordMap[]): void;
     getValue(input: string): string;
 }

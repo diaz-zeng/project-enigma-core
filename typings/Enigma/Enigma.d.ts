@@ -1,9 +1,9 @@
 import { Wheel } from "../Wheel";
 import { Reflector } from "../Reflector";
-import * as Setting from '../defaultSettings.json';
+import { Settings, WordMap, ReflectorSetting } from "../Settings";
 export declare type wheelDirection = 'left' | 'right';
 export declare class Enigma {
-    constructor(settings?: typeof Setting);
+    constructor(settings?: Settings);
     private wordMapper;
     private _wheels;
     get wheels(): Wheel[];
@@ -12,21 +12,18 @@ export declare class Enigma {
     private _wheelsSetting;
     get wheelsSetting(): number[][];
     private _reflectorSetting;
-    get reflectorSetting(): {
-        value1: number;
-        value2: number;
-    }[];
+    get reflectorSetting(): ReflectorSetting[];
     private _inputMapper;
     get inputMapper(): string[];
     private wheelsPosition;
     private emitEvent;
     addEventListener: (eventType: import("../EventHandler").EventType, fn: import("../EventHandler").EventFn) => number;
     removeEventListener: (eventType: import("../EventHandler").EventType, listenerKey: number) => void;
-    setReflectorSetting(setting: typeof Setting.reflector): Enigma;
-    setWheelsSetting(setting: typeof Setting.wheels): Enigma;
-    setInputMapper(setting: typeof Setting.inputMapper): Enigma;
-    setWheelsPosition(setting?: typeof Setting.wheelsPosition): Enigma;
-    setWordMapperSetting(map: typeof Setting.wordMaps): Enigma;
+    setReflectorSetting(setting: ReflectorSetting[]): Enigma;
+    setWheelsSetting(setting: number[][]): Enigma;
+    setInputMapper(setting: string[]): Enigma;
+    setWheelsPosition(setting?: number[]): Enigma;
+    setWordMapperSetting(map?: WordMap[]): Enigma;
     input(input: string): string;
     private wheelProcess;
     private increaseWheel;

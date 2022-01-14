@@ -6,20 +6,20 @@
 
 import { Wheel } from "../Wheel";
 import { Reflector } from "../Reflector";
-import * as Setting from '../defaultSettings.json';
 import { createEventHandler } from '../EventHandler';
 import WordMapper from "./WordMapper";
+import { Settings, WordMap, defaultSettings, ReflectorSetting } from "../Settings";
 
 export type wheelDirection = 'left' | 'right'
 
 export class Enigma {
 
-    constructor(settings?: typeof Setting) {
+    constructor(settings?: Settings) {
         const { addEventListener, removeEventListener, emitEvent } = createEventHandler();
         this.addEventListener = addEventListener;
         this.removeEventListener = removeEventListener;
         this.emitEvent = emitEvent;
-        const { inputMapper, wheels, wheelsPosition, reflector, wordMaps } = settings ?? Setting;
+        const { inputMapper, wheels, wheelsPosition, reflector, wordMaps } = settings ?? defaultSettings;
         this.setInputMapper(inputMapper);
         this.setWheelsSetting(wheels);
         this.setWheelsPosition(wheelsPosition);
@@ -27,7 +27,7 @@ export class Enigma {
         this.setWordMapperSetting(wordMaps);
     }
 
-    private wordMapper = new WordMapper(Setting.wordMaps);
+    private wordMapper = new WordMapper(defaultSettings.wordMaps);
 
     private _wheels!: Wheel[];
     public get wheels(): Wheel[] {
@@ -39,22 +39,22 @@ export class Enigma {
         return this._reflector;
     }
 
-    private _wheelsSetting = Setting.wheels;
+    private _wheelsSetting = defaultSettings.wheels;
     public get wheelsSetting() {
         return this._wheelsSetting;
     }
 
-    private _reflectorSetting = Setting.reflector;
+    private _reflectorSetting: ReflectorSetting[] = defaultSettings.reflector;
     public get reflectorSetting() {
         return this._reflectorSetting;
     }
 
-    private _inputMapper = Setting.inputMapper;
+    private _inputMapper = defaultSettings.inputMapper;
     public get inputMapper() {
         return this._inputMapper;
     }
 
-    private wheelsPosition = Setting.wheelsPosition;
+    private wheelsPosition = defaultSettings.wheelsPosition;
 
     private emitEvent;
 
@@ -62,14 +62,14 @@ export class Enigma {
 
     public removeEventListener;
 
-    public setReflectorSetting(setting: typeof Setting.reflector): Enigma {
+    public setReflectorSetting(setting: ReflectorSetting[]): Enigma {
         this._reflectorSetting = setting;
         this._reflector = new Reflector(setting);
         this.emitEvent('reflectorSettingChange');
         return this;
     }
 
-    public setWheelsSetting(setting: typeof Setting.wheels): Enigma {
+    public setWheelsSetting(setting: number[][]): Enigma {
         this._wheelsSetting = setting;
         this._wheels = [];
         this.wheelsSetting.forEach((e) => {
@@ -80,14 +80,14 @@ export class Enigma {
         return this;
     }
 
-    public setInputMapper(setting: typeof Setting.inputMapper): Enigma {
+    public setInputMapper(setting: string[]): Enigma {
         this._inputMapper = setting.map(e => e.toUpperCase());
         this.emitEvent('inputMapperChange');
         return this;
     }
 
-    public setWheelsPosition(setting?: typeof Setting.wheelsPosition): Enigma {
-        this.wheelsPosition = (setting ?? Setting.wheelsPosition);
+    public setWheelsPosition(setting?: number[]): Enigma {
+        this.wheelsPosition = (setting ?? defaultSettings.wheelsPosition);
         this.wheelsPosition.reverse();
         this.wheels.forEach((w, index) => {
             w.setWheelPosition(this.wheelsPosition[index] ?? 0);
@@ -96,7 +96,7 @@ export class Enigma {
         return this;
     }
 
-    public setWordMapperSetting(map: typeof Setting.wordMaps): Enigma {
+    public setWordMapperSetting(map?: WordMap[]): Enigma {
         this.wordMapper.setWordMaps(map);
         this.emitEvent('wordMapsChange');
         return this;

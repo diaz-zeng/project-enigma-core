@@ -3,15 +3,16 @@
  * @LastEditors: 曾令宇
  * @FilePath: /project-enigma-core/src/Enigma/WordMapper.ts
  */
-import { wordMaps } from '../defaultSettings.json';
+import { WordMap } from '../Settings';
 export default class WordMapper {
     private wordMap: Map<string, string> = new Map();
     private error = new Error('字符映射设置错误,每个字符只能被映射一次');
-    constructor(map: typeof wordMaps) {
+    constructor(map: WordMap[] = []) {
         this.setWordMaps(map);
     }
 
-    public setWordMaps(map: typeof wordMaps) {
+    public setWordMaps(map: WordMap[] = []) {
+        this.wordMap = new Map();
         const testMap: Record<string, number> = {};
         const reg = /^[A-Z]$/;
         map.forEach((e: { value1: string, value2: string }) => {

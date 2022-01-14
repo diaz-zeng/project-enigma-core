@@ -3,8 +3,9 @@
  * @LastEditors: 曾令宇
  * @FilePath: /project-enigma-core/src/index.ts
  */
+
 export * from './Wheel';
 export * from './Reflector';
 export * from './Enigma';
 export * from './EventHandler';
-export { default as SettingObject } from './defaultSettings.json';
+export { Settings, defaultSettings as SettingTemplate } from './Settings';
