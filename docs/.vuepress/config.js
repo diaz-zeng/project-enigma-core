@@ -1,7 +1,7 @@
 /*
  * @Date: 2021-11-09 16:49:17
  * @LastEditors: 曾令宇
- * @LastEditTime: 2022-01-18 16:19:22
+ * @LastEditTime: 2022-01-18 16:28:06
  * @FilePath: /project-enigma-core/docs/.vuepress/config.js
  */
 module.exports = {
@@ -13,7 +13,9 @@ module.exports = {
     },
     themeConfig: {
         sidebar: ['/', '/settings', '/enigma'],
-        sidebarDepth: 3
+        sidebarDepth: 3,
+        nav:
+            [{ text: "GitHub", link: 'https://github.com/diaz-zeng/project-enigma-core', target: '_blank' }]
     },
     markdown: {
         toc: {
