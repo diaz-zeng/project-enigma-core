@@ -27,14 +27,14 @@ export class Enigma {
         this.removeEventListener = removeEventListener;
         this.emitEvent = emitEvent;
         const { inputMapper, wheels, wheelsPosition, reflector, wordMaps } = settings ?? defaultSettings;
-        this.setInputMapper(inputMapper);
-        this.setWheelsSetting(wheels);
-        this.setWheelsPosition(wheelsPosition);
-        this.setReflectorSetting(reflector);
-        this.setWordMapperSetting(wordMaps);
+        this.setInputMapper(inputMapper ?? defaultSettings.inputMapper);
+        this.setWheelsSetting(wheels ?? defaultSettings.wheels);
+        this.setWheelsPosition(wheelsPosition ?? defaultSettings.wheelsPosition);
+        this.setReflectorSetting(reflector ?? defaultSettings.reflector);
+        this.setWordMapperSetting(wordMaps ?? defaultSettings.wordMaps);
     }
 
-    private wordMapper = new WordMapper(defaultSettings.wordMaps);
+    private wordMapper: WordMapper = new WordMapper(defaultSettings.wordMaps);
 
     /**
      * @description: 转轮组
@@ -57,7 +57,7 @@ export class Enigma {
     public get wheelsSetting() {
         return this._wheelsSetting;
     }
-    private _wheelsSetting = defaultSettings.wheels;
+    private _wheelsSetting!: number[][];
 
     /**
      * @description: 反射器设置
@@ -65,7 +65,7 @@ export class Enigma {
     public get reflectorSetting() {
         return this._reflectorSetting;
     }
-    private _reflectorSetting: ReflectorSetting[] = defaultSettings.reflector;
+    private _reflectorSetting!: ReflectorSetting[];
 
     /**
      * @description: 输入映射，将字母映射为数字
@@ -73,9 +73,9 @@ export class Enigma {
     public get inputMapper() {
         return this._inputMapper;
     }
-    private _inputMapper = defaultSettings.inputMapper;
+    private _inputMapper!: string[];
 
-    private wheelsPosition = defaultSettings.wheelsPosition;
+    private wheelsPosition!: number[];
 
     /**
      * @description: 事件触发器
@@ -107,7 +107,7 @@ export class Enigma {
     public setReflectorSetting(setting: ReflectorSetting[]): Enigma {
         this._reflectorSetting = setting;
         this._reflector = new Reflector(setting);
-        this.emitEvent('reflectorSettingChange');
+        this.emitEvent('reflectorSettingChange', setting);
         return this;
     }
     /**
@@ -122,7 +122,8 @@ export class Enigma {
             this._wheels.push(new Wheel(e));
         });
         this._wheels.reverse();
-        this.emitEvent('wheelSettingChange');
+        this.emitEvent('wheelSettingChange', setting);
+        this.emitEvent('wheelPositionChange', this.wheels.map(e => e.position).reverse());
         return this;
     }
     /**
@@ -132,7 +133,7 @@ export class Enigma {
      */
     public setInputMapper(setting: string[]): Enigma {
         this._inputMapper = setting.map(e => e.toUpperCase());
-        this.emitEvent('inputMapperChange');
+        this.emitEvent('inputMapperChange', setting);
         return this;
     }
 
@@ -141,8 +142,8 @@ export class Enigma {
      * @param {number[]} setting 设置对象，有几个转轮就传几个元素，多余的会被忽略，缺失的会补0，范围是0-25，超过将会被取模
      * @return {*} 当前实例
      */
-    public setWheelsPosition(setting?: number[]): Enigma {
-        this.wheelsPosition = (setting ?? defaultSettings.wheelsPosition);
+    public setWheelsPosition(setting: number[]): Enigma {
+        this.wheelsPosition = setting;
         this.wheelsPosition.reverse();
         this.wheels.forEach((w, index) => {
             w.setWheelPosition(this.wheelsPosition[index] ?? 0);
@@ -157,7 +158,7 @@ export class Enigma {
      */
     public setWordMapperSetting(map?: WordMap[]): Enigma {
         this.wordMapper.setWordMaps(map);
-        this.emitEvent('wordMapsChange');
+        this.emitEvent('wordMapsChange', map);
         return this;
     }
     /**
@@ -186,8 +187,9 @@ export class Enigma {
                 result.push(w);
             }
         });
-
-        return result.join('');
+        const resultStr = result.join('');
+        this.emitEvent('input', resultStr);
+        return resultStr;
     }
     private wheelProcess(input: number, direction: wheelDirection): number {
         let result = input;
@@ -210,7 +212,7 @@ export class Enigma {
         return result;
     }
     private increaseWheel(): void {
-        this.wheels.some((wheel, index) => {
+        this.wheels.some((wheel) => {
             wheel.setWheelPosition();
             return wheel.position !== 0;
         });
