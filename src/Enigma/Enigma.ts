@@ -107,7 +107,7 @@ export class Enigma {
     public setReflectorSetting(setting: ReflectorSetting[] = defaultSettings.reflector): Enigma {
         this._reflectorSetting = setting;
         this._reflector = new Reflector(setting);
-        this.emitEvent('reflectorSettingChange');
+        this.emitEvent('reflectorSettingChange', setting);
         return this;
     }
     /**
@@ -122,7 +122,8 @@ export class Enigma {
             this._wheels.push(new Wheel(e));
         });
         this._wheels.reverse();
-        this.emitEvent('wheelSettingChange');
+        this.emitEvent('wheelSettingChange', setting);
+        this.emitEvent('wheelPositionChange', this.wheels.map(e => e.position).reverse());
         return this;
     }
     /**
@@ -132,7 +133,7 @@ export class Enigma {
      */
     public setInputMapper(setting: string[] = defaultSettings.inputMapper): Enigma {
         this._inputMapper = setting.map(e => e.toUpperCase());
-        this.emitEvent('inputMapperChange');
+        this.emitEvent('inputMapperChange', setting);
         return this;
     }
 
@@ -157,7 +158,7 @@ export class Enigma {
      */
     public setWordMapperSetting(map?: WordMap[]): Enigma {
         this.wordMapper.setWordMaps(map);
-        this.emitEvent('wordMapsChange');
+        this.emitEvent('wordMapsChange', map);
         return this;
     }
     /**

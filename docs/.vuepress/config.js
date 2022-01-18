@@ -1,7 +1,7 @@
 /*
  * @Date: 2021-11-09 16:49:17
  * @LastEditors: 曾令宇
- * @LastEditTime: 2022-01-18 10:40:08
+ * @LastEditTime: 2022-01-18 12:26:06
  * @FilePath: /project-enigma-core/docs/.vuepress/config.js
  */
 module.exports = {
@@ -12,7 +12,8 @@ module.exports = {
         }
     },
     themeConfig: {
-        sidebar: ['/', '/settings', '/enigma']
+        sidebar: ['/', '/settings', '/enigma'],
+        sidebarDepth: 3
     },
     markdown: {
         toc: {

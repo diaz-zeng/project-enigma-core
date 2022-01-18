@@ -63,14 +63,14 @@ export class Wheel {
    * @return {*} 转换后的值
    */
   public toLeft(input: number): number {
-    const target = (input + this.position) % 26;
+    const target = input;
     let result = -1;
     const flg = this.setting.some((code, index) => {
       result = index;
       return code === target;
     });
     if (flg && result !== -1) {
-      return result;
+      return (result + this.position) % 26;
     }
     throw this.notFindError;
 
@@ -82,9 +82,11 @@ export class Wheel {
    * @return {*} 转换后的值
    */
   public toRight(input: number): number {
-    const value = this.setting[input] ?? -1;
+    const temp = input - this.position;
+    const target = temp < 0 ? temp + 26 : temp;
+    const value = this.setting[target] ?? -1;
     if (value !== -1) {
-      return (value - this.position + 26) % 26;
+      return value;
     }
     throw this.notFindError;
   }

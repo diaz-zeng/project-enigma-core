@@ -20,16 +20,18 @@ yarn add project-enigma-core # npm install project-enigma-core
 ## 引入
 
 ``` js
-import { Enigma } from 'project-enigma-core' //按需引入
-import * as EnigmaCore from 'project-enigma-core' //全量引入（不建议）
-const EnigmaCore = require('project-enigma-core') //CommonJS
+import { Enigma } from 'project-enigma-core'; //按需引入
+import * as EnigmaCore from 'project-enigma-core'; //全量引入（不建议）
+const EnigmaCore = require('project-enigma-core'); //CommonJS
 ```
 
 ## 基本用法
 
 ```js
-const instance = new Enigma().setWheelsPosition([0,0,0])
-console.log(instance.input("IRKHB MWCVE"))
-// Output: HELLO WORLD
+const instance = new Enigma();
+instance.setWheelsPosition([0,25,20]).input("HELLO WORLD!!!");
+// return: TCMCT IHCKX!!!
+instance.setWheelsPosition([0,25,20]).input("TCMCT IHCKX!!!");
+// return: HELLO WORLD!!!
 ```
 
