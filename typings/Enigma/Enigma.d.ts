@@ -80,7 +80,7 @@ export declare class Enigma {
      * @param {number[]} setting 设置对象，有几个转轮就传几个元素，多余的会被忽略，缺失的会补0，范围是0-25，超过将会被取模
      * @return {*} 当前实例
      */
-    setWheelsPosition(setting?: number[]): Enigma;
+    setWheelsPosition(setting: number[]): Enigma;
     /**
      * @description: 设置字符转换，例如将A转为B
      * @param {WordMap} map 设置对象

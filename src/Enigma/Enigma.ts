@@ -27,14 +27,14 @@ export class Enigma {
         this.removeEventListener = removeEventListener;
         this.emitEvent = emitEvent;
         const { inputMapper, wheels, wheelsPosition, reflector, wordMaps } = settings ?? defaultSettings;
-        this.setInputMapper(inputMapper);
-        this.setWheelsSetting(wheels);
-        this.setWheelsPosition(wheelsPosition);
-        this.setReflectorSetting(reflector);
-        this.setWordMapperSetting(wordMaps);
+        this.setInputMapper(inputMapper ?? defaultSettings.inputMapper);
+        this.setWheelsSetting(wheels ?? defaultSettings.wheels);
+        this.setWheelsPosition(wheelsPosition ?? defaultSettings.wheelsPosition);
+        this.setReflectorSetting(reflector ?? defaultSettings.reflector);
+        this.setWordMapperSetting(wordMaps ?? defaultSettings.wordMaps);
     }
 
-    private wordMapper = new WordMapper(defaultSettings.wordMaps);
+    private wordMapper: WordMapper = new WordMapper(defaultSettings.wordMaps);
 
     /**
      * @description: 转轮组
@@ -57,7 +57,7 @@ export class Enigma {
     public get wheelsSetting() {
         return this._wheelsSetting;
     }
-    private _wheelsSetting = defaultSettings.wheels;
+    private _wheelsSetting!: number[][];
 
     /**
      * @description: 反射器设置
@@ -65,7 +65,7 @@ export class Enigma {
     public get reflectorSetting() {
         return this._reflectorSetting;
     }
-    private _reflectorSetting: ReflectorSetting[] = defaultSettings.reflector;
+    private _reflectorSetting!: ReflectorSetting[];
 
     /**
      * @description: 输入映射，将字母映射为数字
@@ -73,9 +73,9 @@ export class Enigma {
     public get inputMapper() {
         return this._inputMapper;
     }
-    private _inputMapper = defaultSettings.inputMapper;
+    private _inputMapper!: string[];
 
-    private wheelsPosition = defaultSettings.wheelsPosition;
+    private wheelsPosition!: number[];
 
     /**
      * @description: 事件触发器
@@ -104,7 +104,7 @@ export class Enigma {
      * @param {ReflectorSetting} setting 配置对象
      * @return {*} 当前实例
      */
-    public setReflectorSetting(setting: ReflectorSetting[] = defaultSettings.reflector): Enigma {
+    public setReflectorSetting(setting: ReflectorSetting[]): Enigma {
         this._reflectorSetting = setting;
         this._reflector = new Reflector(setting);
         this.emitEvent('reflectorSettingChange', setting);
@@ -115,7 +115,7 @@ export class Enigma {
      * @param {number[][]} setting 设置对象
      * @return {*} 当前实例
      */
-    public setWheelsSetting(setting: number[][] = defaultSettings.wheels): Enigma {
+    public setWheelsSetting(setting: number[][]): Enigma {
         this._wheelsSetting = setting;
         this._wheels = [];
         this.wheelsSetting.forEach((e) => {
@@ -131,7 +131,7 @@ export class Enigma {
      * @param {string[]} setting 设置对象，数组的索引将会是字符映射后的数字
      * @return {*} 当前实例
      */
-    public setInputMapper(setting: string[] = defaultSettings.inputMapper): Enigma {
+    public setInputMapper(setting: string[]): Enigma {
         this._inputMapper = setting.map(e => e.toUpperCase());
         this.emitEvent('inputMapperChange', setting);
         return this;
@@ -142,7 +142,7 @@ export class Enigma {
      * @param {number[]} setting 设置对象，有几个转轮就传几个元素，多余的会被忽略，缺失的会补0，范围是0-25，超过将会被取模
      * @return {*} 当前实例
      */
-    public setWheelsPosition(setting: number[] = defaultSettings.wheelsPosition): Enigma {
+    public setWheelsPosition(setting: number[]): Enigma {
         this.wheelsPosition = setting;
         this.wheelsPosition.reverse();
         this.wheels.forEach((w, index) => {
