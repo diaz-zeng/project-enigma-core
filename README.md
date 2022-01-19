@@ -37,3 +37,4 @@ instance.setWheelsPosition([0,25,20]).input("TCMCT IHCKX!!!");
 // return: HELLO WORLD!!!
 ```
 
+**更多信息请查看[文档](https://diaz-zeng.github.io/project-enigma-core/)**

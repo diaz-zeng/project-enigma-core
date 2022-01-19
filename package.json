@@ -4,6 +4,11 @@
   "main": "lib/project-enigma-core.umd.min.js",
   "typings": "typings/index.d.ts",
   "module": "lib/project-enigma-core.esm.min.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/diaz-zeng/project-enigma-core.git"
+  },
+  "homepage": "https://diaz-zeng.github.io/project-enigma-core/",
   "author": "Diaz",
   "license": "MIT",
   "scripts": {
