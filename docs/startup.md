@@ -1,6 +1,4 @@
-# project-enigma-core (WIP) 
-
-恩尼格码密码机的JS库，可以嵌入到web应用、桌面应用或是移动应用中，支持Typescript。
+# 起步
 
 ## 安装
 
@@ -10,9 +8,9 @@
 yarn add project-enigma-core # npm install project-enigma-core
 ```
 
-### 下载文件引入
+### 通过文件
 
-(https://github.com/diaz-zeng/project-enigma-core/releases)
+[下载地址](https://github.com/diaz-zeng/project-enigma-core/releases)
 
 ```html
 <script src="project-enigma-core.umd.min.js"></script> 
@@ -22,9 +20,9 @@ yarn add project-enigma-core # npm install project-enigma-core
 ## 引入
 
 ``` js
-import { Enigma } from 'project-enigma-core' //按需引入
-import * as EnigmaCore from 'project-enigma-core' //全量引入（不建议）
-const EnigmaCore = require('project-enigma-core') //CommonJS
+import { Enigma } from 'project-enigma-core'; //按需引入
+import * as EnigmaCore from 'project-enigma-core'; //全量引入（不建议）
+const EnigmaCore = require('project-enigma-core'); //CommonJS
 ```
 
 ## 基本用法

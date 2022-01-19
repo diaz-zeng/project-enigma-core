@@ -1,37 +1,27 @@
-# 起步
+# 介绍
 
-## 安装
+这个项目是基于恩尼格码密码机的原理所实现，实现了恩尼格码密码机的大部分组件。做这个项目单纯是为了好玩，当然有兴趣的也可以把这个项目运用到其他的场景中（比如游戏），项目的灵感来自于抖音up主：[简客JK](https://v.douyin.com/8ETmb5d/)。
 
-### NPM（推荐）
+## 关于恩尼格码密码机
 
-```bash
-yarn add project-enigma-core # npm install project-enigma-core
-```
+[恩尼格码](https://baike.baidu.com/item/%E6%81%A9%E5%B0%BC%E6%A0%BC%E7%8E%9B%E5%AF%86%E7%A0%81%E6%9C%BA/5691350?fromtitle=enigma&fromid=10781#viewPageContent)密码机是上世纪二十年代发明的一种电气编码机，本质上是一种扰码设备，将一个输入字符转换为另一个字符输出，在使用相同密匙两个字符可以相互转换，在二战中被纳粹德国大规模应用于军事通信，并发展出多种改进型。
 
-### 通过文件
+## 项目指引
 
-[下载地址](https://github.com/diaz-zeng/project-enigma-core/releases)
+**本项目实现了恩尼格码密码机除去用于输入输出的键盘与显示板外，所有主要的加密部分，包括：**
 
-```html
-<script src="project-enigma-core.umd.min.js"></script> 
-<!--将会暴露EnigmaCore对象到全局-->
-```
+- [连接板](/wordMapper)：
+    用于将两个字母相连，例如A与B相连则按下A输入B，按下B输入A。
+- [转子](/wheel)：
+    用于转换字符，将一个输入字符转为另一个，一个密码机可以设置多个转子串连以增加加密复杂度，每处理一个字符，转子都将改变一次位置（类似于计数器的方式）。
+- [反射器](/reflector)：
+    在转子最后连接着反射器，反射器会将输入的字符转换为另一个字符再返回转子。
 
-## 引入
+**同时也增加一些改动：**
 
-``` js
-import { Enigma } from 'project-enigma-core'; //按需引入
-import * as EnigmaCore from 'project-enigma-core'; //全量引入（不建议）
-const EnigmaCore = require('project-enigma-core'); //CommonJS
-```
+- 反射器、转子之间不是传递字符而是传递索引，索引将在输入转子之前和离开转子之后转换为字符。
+- 增加了[输入映射](/settings#inputMapper)的配置，默认的顺序是A-Z对应0-25，允许自定义，比如打乱或反转序列,在输入时字符将会转换为输入映射所配置的数值作为索引输入转子。
 
-## 基本用法
+**工作流程**
 
-```js
-const instance = new Enigma();
-instance.setWheelsPosition([0,25,20]).input("HELLO WORLD!!!");
-// return: TCMCT IHCKX!!!
-instance.setWheelsPosition([0,25,20]).input("TCMCT IHCKX!!!");
-// return: HELLO WORLD!!!
-```
-
+`输入字符`->`输入映射`->`转子组`->`反射器`->`转子组`->`输入映射`->`返回值`
