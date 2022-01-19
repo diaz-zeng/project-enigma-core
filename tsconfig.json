@@ -10,13 +10,11 @@
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "removeComments": true,
     "sourceMap": true,
     "baseUrl": ".",
     "outDir": "./dist",
     "declaration": true,
     "declarationDir": "typings",
-    // "emitDeclarationOnly": true,
     "resolveJsonModule": true,
     "types": [
       "jest",
