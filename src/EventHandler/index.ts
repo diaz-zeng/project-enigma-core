@@ -1,12 +1,18 @@
 /*
  * @Date: 2022-01-12 16:31:30
  * @LastEditors: 曾令宇
- * @FilePath: /project-enigma-core/src/Enigma/EventHandler.ts
+ * @FilePath: /project-enigma-core/src/EventHandler/index.ts
+ */
+/**
+ * @description: 事件类型
  */
 export type EventType = 'input' | 'wheelPositionChange' | 'wheelSettingChange' | 'reflectorSettingChange' | 'inputMapperChange' | 'wordMapsChange'
 
 export type EventFn = ((value?: unknown) => void)
 
+/**
+ * @description: 创建一个事件处理器的副本
+ */
 export const createEventHandler = () => {
 
     const eventPool: Map<EventType, Map<number, EventFn>> = new Map();
@@ -26,7 +32,6 @@ export const createEventHandler = () => {
             eventPool.set(eventType, eventMap);
         }
     };
-
     const emitEvent = (eventType: EventType, value?: unknown): void => {
         const eventMap = eventPool.get(eventType);
         if (eventMap) {
