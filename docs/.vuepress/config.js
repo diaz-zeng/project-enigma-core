@@ -1,7 +1,7 @@
 /*
  * @Date: 2021-11-09 16:49:17
  * @LastEditors: 曾令宇
- * @LastEditTime: 2022-01-19 16:37:34
+ * @LastEditTime: 2022-01-19 19:43:41
  * @FilePath: /project-enigma-core/docs/.vuepress/config.js
  */
 module.exports = {
@@ -15,7 +15,11 @@ module.exports = {
         sidebar: ['/', '/startup', '/settings', '/enigma', '/wordMapper', '/wheel', '/reflector'],
         sidebarDepth: 3,
         nav:
-            [{ text: "GitHub", link: 'https://github.com/diaz-zeng/project-enigma-core', target: '_blank' }]
+            [
+                { text: "GitHub", link: 'https://github.com/diaz-zeng/project-enigma-core', target: '_blank' },
+                { text: "NPM", link: 'https://www.npmjs.com/package/project-enigma-core', target: '_blank' },
+                { text: "作者博客", link: 'https://diaz-zeng.github.io/', target: '_blank' }
+            ]
     },
     markdown: {
         toc: {
